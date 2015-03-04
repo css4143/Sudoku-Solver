@@ -118,10 +118,29 @@ public class Board {
 		else if(y<=5){ ty=3; }
 		else{ ty=6; }
 		
-		int sqr[] = {board[ty][tx], board[ty][tx+1], board[ty][tx+2], 
-				board[ty+1][tx], board[ty+1][tx+1], board[ty+1][tx+2],
-				board[ty+2][tx], board[ty+2][tx+1], board[ty+2][tx+2]};
+		int sqr[] = {board[tx][ty], board[tx][ty+1], board[tx][ty+2], 
+				board[tx+1][ty], board[tx+1][ty+1], board[tx+1][ty+2],
+				board[tx+2][ty], board[tx+2][ty+1], board[tx+2][ty+2]};
 		return sqr;
+	}
+	
+	/**
+	 * Print a representation of the board to standard output
+	 * 
+	 */
+	public void printBoard(){
+		for(int i=0;i<9;i++){
+			for(int j=0;j<9;j++){
+				System.out.print(board[j][i]+" ");
+				if(j==2 || j==5){
+					System.out.print("| ");
+				}
+			}
+			if(i==2 || i==5){
+				System.out.print("\n---------------------");
+			}
+			System.out.print("\n");
+		}
 	}
 	
 }
