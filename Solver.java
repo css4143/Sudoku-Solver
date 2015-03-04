@@ -27,8 +27,13 @@ public class Solver {
 	 * @return			The solved board configuration or null if there is none
 	 */
 	public Board solution(Board b){
-		int start[] = nextCoords(b, 0, 0);
-		return solve(b,start[0],start[1]);
+		if(b.get(0, 0)==0){
+			return solve(b,0,0);
+		}
+		else{
+			int start[] = nextCoords(b, 0, 0);
+			return solve(b,start[0],start[1]);
+		}
 	}
 	
 	
@@ -45,6 +50,11 @@ public class Solver {
 	 * only returns valid configurations, eliminating the need for an isValid
 	 * method.  I programmed it this way in order to make it more time
 	 * and memory efficient.
+	 * Also, because getSuccessors only produces valid successor and it fills
+	 * spaces one at a time, once the board is full, it must be a valid and
+	 * complete solution.  The y-coordinate will equal 9 when all other spaces
+	 * on the board have been filled.
+	 * 
 	 * 
 	 * @param b		The board to find a solution for
 	 * @param x		The current x coordinate being modified
@@ -52,15 +62,14 @@ public class Solver {
 	 * @return		The solved board configuration or null if none exists.
 	 */
 	private Board solve(Board b, int x, int y){
-		if(isGoal(b)){
+		if(y==9){
 			return b;
 		}
 		else{
 			Board successors[] = getSuccessors(b, x, y);
 			if(successors!=null){
+				int coords[] = nextCoords(b,x,y);
 				for(int i=0;i<successors.length;i++){
-					//modify depending on how getSuccessors and isValid end up
-					int coords[] = nextCoords(b,x,y);
 					Board solution = solve(successors[i],coords[0],coords[1]);
 					if(solution != null){
 						return solution;
@@ -69,18 +78,6 @@ public class Solver {
 			}
 		}
 		return null;
-	}
-	
-	
-	/**
-	 * Still needs to be implemented.
-	 * 
-	 * @param b
-	 * @return
-	 */
-	private boolean isGoal(Board b){
-		
-		return false;
 	}
 	
 	
@@ -133,20 +130,19 @@ public class Solver {
 		}
 		
 		int sCount = 0;
-		for(int i=0;i<9;i++){
+		for(int i=0;i<10;i++){
 			if(counter[i]==0){ sCount++; }
 		}
 		if(sCount==0){ return null; }
 		Board[] successors = new Board[sCount];
 		
-		for(int i=0;i<9;i++){
+		for(int i=0;i<10;i++){
 			if(counter[i]==0){
 				successors[sCount-1] = new Board(b);
 				successors[sCount-1].put(i, x, y);
 				sCount--;
 			}
 		}
-		
 		
 		return successors;
 	}
@@ -178,7 +174,7 @@ public class Solver {
 				ty++;
 			}
 			
-			if(b.get(tx, ty) == 0){
+			if(ty==9 || b.get(tx, ty) == 0){
 				found = true;
 			}
 		}
