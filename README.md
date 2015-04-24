@@ -10,3 +10,5 @@ The program finds the solution to a sudoku board through the use of a modified b
 This program is written in Java 1.7
 
 To run this program, the main method is in SudokuSolver.java 
+
+SudokuSolver currently has an example board that it solves.
