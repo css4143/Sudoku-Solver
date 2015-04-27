@@ -86,23 +86,27 @@ public class Solver {
 	 * for that spot on the board.  It creates a different board for each valid
 	 * configuration and returns an array of these boards.
 	 * 
-	 * Design:  For the spot currently being looked at -> get the three lists of row, col, and sqr.
-	 * Two ways to handle checking for which values are valid for that spot.  Loop from 1 to 9 and see if all the 3 arrays 
-	 * do not contain that number (advantage: as soon as one list contains the element the rest don't have to be checked).
+                                                                                   |
+	 * Design:  For the spot currently being looked at -> get the three lists of
+	 * row, col, and sqr. Two ways to handle checking for which values are valid
+	 * for that spot.  Loop from 1 to 9 and see if all the 3 arrays do not 
+	 * contain that number (advantage: as soon as one list contains the element 
+	 * the rest don't have to be checked).
 	 * Time complexity: (O 3n^2)
 	 * 
-	 * The other way is to make a list of size 10 (iCheck) and go through each list once and increment the index of iCheck that
-	 * is the number at the spot on the list we are looping through.  When all three lists are done, go through iCheck and any
-	 * place that is zero, the index of that spot is a valid number for the successor at the current spot being looked at.
+	 * The other way is to make a list of size 10 (iCheck) and go through each 
+	 * list once and increment the index of iCheck that is the number at the 
+	 * spot on the list we are looping through.  When all three lists are done,
+	 * go through iCheck and any place that is zero, the index of that spot is a
+	 * valid number for the successor at the current spot being looked at.
 	 * Time complexity: (O 4n)
 	 * 
 	 * In this case, n will always be 9, but the second method is still faster.
 	 * 
-	 * I am going with the second because it is more efficient and it sounds like more fun to implement.  It looks like I broke 
-	 * my 80 characters per line rule.  O well, might fix it later.
+	 * The second method will be implemented due to increased efficiency and 
+	 * overall readability.
 	 * 
-	 * The last for-loop populates successors from right to left, I'm not sure
-	 * if that's considered bad form.  It should be fine
+	 * The last for-loop populates successors from right to left.
 	 * 
 	 * @param b		The board that is going to be modified
 	 * @param x		The current x-coordinate to be modified
@@ -114,16 +118,19 @@ public class Solver {
 		for(int i=0;i<10;i++){ counter[i] = 0; }
 		int temp[];
 		
+		//check current column for valid placements
 		temp = b.getCol(x);
 		for(int i=0;i<9;i++){
 			counter[temp[i]]++;
 		}
 		
+		//check current row for valid placements
 		temp = b.getRow(y);
 		for(int i=0;i<9;i++){
 			counter[temp[i]]++;
 		}
 		
+		//check current 3x3 square for valid placements
 		temp = b.getSqr(x, y);
 		for(int i=0;i<9;i++){
 			counter[temp[i]]++;
@@ -151,10 +158,10 @@ public class Solver {
 	 * Returns the next set of valid coordinates to modify in the backtracking
 	 * algorithm.  It will pass over any places that already have values.
 	 * 
-	 * Note: If put in the situation where the only spots left all already have
-	 * values in them then that would cause endless looping.  I think that the
-	 * structure of the solve method protects against this but I'm not 100%.  
-	 * Just solve through testing/
+	 * Note: It would seem that if put in the situation where the only spots 
+	 * left all already have values in them then that would cause endless 
+	 * looping.  However, the structure of the solve method protects against
+	 * this. 
 	 * 
 	 * @param x		The current x-coordinate
 	 * @param y		The current y-coordinate
@@ -182,5 +189,4 @@ public class Solver {
 		return coord;
 	}
 	
-
 }
