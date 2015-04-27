@@ -17,8 +17,8 @@ public class Board {
 	 * The constructor method.
 	 * For now it simply initializes the board size and initializes all spots
 	 * as 0.
-	 * In the future, maybe pass it something that will specify an actual
-	 * initial board state.
+	 * 
+	 * @return		A new initialized board
 	 */
 	public Board(){
 		board = new int[9][9];
@@ -34,6 +34,7 @@ public class Board {
 	 * and copies the elements in is board to its own.
 	 * 
 	 * @param b		The Board object who's board will be copied
+	 * @return		A new initialized board
 	 */
 	public Board(Board b){
 		board = new int[9][9];
@@ -82,9 +83,7 @@ public class Board {
 	/**
 	 * Returns an array of ints containing all the values in a given row on the
 	 * sudoku board.
-	 * You could say that this code looks ugly and that a for loop would look
-	 * nicer and you would probably be right, but I felt like coding it this
-	 * way and its readable so whatever.
+	 * Coded in such a way for readability and to demonstrate/test Java array creation.
 	 * 
 	 * @param y		The y index of the row to return
 	 * @return		An array of ints that represent the values in the specified
@@ -110,10 +109,11 @@ public class Board {
 		int tx;
 		int ty;
 		
+		//find x coordinate of current 3x3 board square
 		if(x<=2){ tx=0; }
 		else if(x<=5){ tx=3; }
 		else{ tx=6; }
-		
+		//find y coodinate of current 3x3 board square
 		if(y<=2){ ty=0; }
 		else if(y<=5){ ty=3; }
 		else{ ty=6; }
