@@ -85,8 +85,7 @@ public class Solver {
 	 * getSuccessors takes a current spot and finds all valid number placements
 	 * for that spot on the board.  It creates a different board for each valid
 	 * configuration and returns an array of these boards.
-	 * 
-                                                                                   |
+	 *
 	 * Design:  For the spot currently being looked at -> get the three lists of
 	 * row, col, and sqr. Two ways to handle checking for which values are valid
 	 * for that spot.  Loop from 1 to 9 and see if all the 3 arrays do not 
