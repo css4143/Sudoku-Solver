@@ -1,5 +1,5 @@
 # Sudoku-Solver
-A sudoku solver
+The backend of a sudoku solver
 
 Author: Connor Seiden
 
