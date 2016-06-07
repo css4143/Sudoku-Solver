@@ -113,7 +113,7 @@ public class Board {
 		if(x<=2){ tx=0; }
 		else if(x<=5){ tx=3; }
 		else{ tx=6; }
-		//find y coodinate of current 3x3 board square
+		//find y coordinate of current 3x3 board square
 		if(y<=2){ ty=0; }
 		else if(y<=5){ ty=3; }
 		else{ ty=6; }
