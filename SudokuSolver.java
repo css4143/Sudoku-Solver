@@ -1,4 +1,3 @@
-
 /**
  * The main class of the Sudoku-Solver program.
  * 
@@ -19,6 +18,7 @@ public class SudokuSolver {
 	public static void main(String[] args){
 		Board board = new Board();
 		if (args.length>0 && args[0].equals("test")){
+
 			board.put(3,1,0);
 			board.put(8,3,0);
 			board.put(9,0,1);
@@ -57,14 +57,13 @@ public class SudokuSolver {
 			
 			System.out.println("Initial Board:");
 			board.printBoard();
+			
 		}
 		
 		System.out.print("\n\n");
 		
-		Solver s = new Solver();
-		
 		long start = System.currentTimeMillis();
-		Board solution = s.solution(board);
+		Board solution = Solver.solution(board);
 		long end = System.currentTimeMillis();
 		
 		
